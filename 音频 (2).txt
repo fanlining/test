@@ -1,0 +1,32 @@
+asoc 设计思路
+
+参数 
+1 表明支持哪些参数   2 根据指定的参数  进行硬件设置
+
+使用strace 命令查询执行流程
+
+ANDROID TINYPLAY与TINYCAP流程
+https://www.freesion.com/article/7678406915/
+
+
+Android下的音频通道配置文件mixer_paths.xml
+https://blog.csdn.net/mike8825/article/details/69487983/
+
+
+
+【Audio driver】mixer_paths.xml文件分析
+https://blog.csdn.net/qq_38091632/article/details/104406783
+
+xml 里面的数据，当其中一个设备节点被改变，那会追踪相关的设备节点一起改变。
+
+audiohardware  class作为向下访问的接口 （由厂家提供）
+派生自   audiohardwarebase    audiohard interface
+
+audiohardware  里面有有  audio_stream_out  还有  audio_stream_in
+我感觉 audio_stream_out  这个得到是  pcm_open  得到的呢
+
+Android Audio代码分析8 - AudioHardwareALSA::openOutputStream函数
+https://www.cnblogs.com/andriod-html5/archive/2011/10/11/2539559.html
+
+tinyalsa   里面有  pcm_open  pcm_write  pcm_read   还有设置 kconfig 的函数
+
