@@ -30,3 +30,13 @@ https://www.cnblogs.com/andriod-html5/archive/2011/10/11/2539559.html
 
 tinyalsa   里面有  pcm_open  pcm_write  pcm_read   还有设置 kconfig 的函数
 
+
+Linux ALSA声卡驱动之八：ASoC架构中的Platform
+https://blog.csdn.net/droidphone/article/details/7316061
+snd_soc_register_platform() 该函数用于注册一个snd_soc_platform，只有注册以后，它才可以被Machine驱动使用。
+snd_soc_platform  需要从  snd_soc_register_platform 中 第一参数中 继承一个名字。
+
+
+设备树里面的名字 是什么名字呢？
+
+
