@@ -37,6 +37,6 @@ snd_soc_register_platform() 该函数用于注册一个snd_soc_platform，只有
 snd_soc_platform  需要从  snd_soc_register_platform 中 第一参数中 继承一个名字。
 
 
-设备树里面的名字 是什么名字呢？
+研究 xml  关键词  android   audio   usecase
 
 
