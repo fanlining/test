@@ -39,4 +39,7 @@ snd_soc_platform  需要从  snd_soc_register_platform 中 第一参数中 继�
 
 研究 xml  关键词  android   audio   usecase
 
+解析 pcm_open
+https://www.cnblogs.com/chenzhizhong/p/6604405.html
+
 
