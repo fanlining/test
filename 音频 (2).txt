@@ -42,4 +42,14 @@ snd_soc_platform  需要从  snd_soc_register_platform 中 第一参数中 继�
 解析 pcm_open
 https://www.cnblogs.com/chenzhizhong/p/6604405.html
 
+搜索关键词  dapm context
+
+注意这三个函数   （首先这三个函数来自 韦东山  alsa 移植）  / 然后注意 dapm 是怎么来的   ，韦东山移植上有讲
+	snd_soc_dapm_new_controls(dapm, wm8976_dapm_widgets,
+				  ARRAY_SIZE(wm8976_dapm_widgets));
+
+	snd_soc_dapm_add_routes(dapm, audio_map, ARRAY_SIZE(audio_map));
+
+	snd_soc_dapm_new_widgets(dapm);
+
 
