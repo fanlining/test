@@ -51,5 +51,50 @@ https://www.cnblogs.com/chenzhizhong/p/6604405.html
 	snd_soc_dapm_add_routes(dapm, audio_map, ARRAY_SIZE(audio_map));
 
 	snd_soc_dapm_new_widgets(dapm);
+	
+	
+	
+索引关键点
+到这里为止，我们为声卡创建并初始化好了所需的widget，各个widget也通过path连接在了一起，接下来，dapm等待用户的指令，一旦某个dapm kcontrol被用户空间改变，利用这些连接关系，dapm会重新创建音频路径，脱离音频路径的widget会被下电，加入音频路径的widget会被上电，所有的上下电动作都会自动完成，用户空间的应用程序无需关注这些变化，它只管按需要改变某个dapm kcontrol即可。
+static const struct snd_soc_dapm_route audio_map[] = {
+	/* Mono output mixer */
+	{"Mono Mixer", "PCM Playback Switch", "DAC"},
+	{"Mono Mixer", "Aux Playback Switch", "Aux Input"},
+	{"Mono Mixer", "Line Bypass Switch", "Boost Mixer"},
+
+	/* Speaker output mixer */
+	{"Speaker Mixer", "PCM Playback Switch", "DAC"},
+	{"Speaker Mixer", "Aux Playback Switch", "Aux Input"},
+	{"Speaker Mixer", "Line Bypass Switch", "Boost Mixer"},
+
+	/* Outputs */
+	{"Mono Out", NULL, "Mono Mixer"},
+	{"MONOOUT", NULL, "Mono Out"},
+	{"SpkN Out", NULL, "Speaker Mixer"},
+	{"SpkP Out", NULL, "Speaker Mixer"},
+	{"SPKOUTN", NULL, "SpkN Out"},
+	{"SPKOUTP", NULL, "SpkP Out"},
+
+	/* Boost Mixer */
+	{"Boost Mixer", NULL, "ADC"},
+	{"Capture Boost Switch", "Aux Capture Boost Switch", "AUX"},
+	{"Aux Boost", "Aux Volume", "Boost Mixer"},
+	{"Capture Boost", "Capture Switch", "Boost Mixer"},
+	{"Mic Boost", "Mic Volume", "Boost Mixer"},
+
+	/* Inputs */
+	{"MICP", NULL, "Mic Boost"},
+	{"MICN", NULL, "Mic PGA"},
+	{"Mic PGA", NULL, "Capture Boost"},
+	{"AUX", NULL, "Aux Input"},
+};
+
+struct snd_soc_dapm_route {   看上去好多都省略下了  connected
+        const char *sink;  
+        const char *control;  
+        const char *source;  
+        int (*connected)(struct snd_soc_dapm_widget *source,  
+                         struct snd_soc_dapm_widget *sink);  
+};  
 
 
