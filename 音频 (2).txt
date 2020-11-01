@@ -97,4 +97,10 @@ struct snd_soc_dapm_route {   看上去好多都省略下了  connected
                          struct snd_soc_dapm_widget *sink);  
 };  
 
+tinyalsa 函数调用流程
+https://www.cnblogs.com/linhaostudy/archive/2018/03/07/8515277.html
+
+snd_soc_platform_driver  中的 new_pcm,使用是在  soc_new_pcm 中被调用的！
+snd_soc_platform_driver  中的 ops  大致是干什么的？  https://blog.csdn.net/DroidPhone/article/details/7316061  
+
 
