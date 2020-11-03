@@ -100,7 +100,10 @@ struct snd_soc_dapm_route {   看上去好多都省略下了  connected
 tinyalsa 函数调用流程
 https://www.cnblogs.com/linhaostudy/archive/2018/03/07/8515277.html
 
-snd_soc_platform_driver  中的 new_pcm,使用是在  soc_new_pcm 中被调用的！
+snd_soc_platform_driver  中的 pcm_new,使用是在  soc_new_pcm 中被调用的！  关于在什么时间被调用，可以看下 我收藏的图
 snd_soc_platform_driver  中的 ops  大致是干什么的？  https://blog.csdn.net/DroidPhone/article/details/7316061  
+
+
+xml 文件，会有一个函数解析  pathname  把它名下的 kcontrcl 设置用 tinymix修改传入  内核
 
 
